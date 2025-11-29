@@ -4,9 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google-site-verification" content="gZop1TgPprf9xAq-vtz9GSIP65yeqE3-pbXyoUNEbfE" />
-<title>Stack de Herramientas</title>
+<title>Stools – Herramientas Web</title>
+
+<meta name="description" content="Stools es una colección minimalista de herramientas web útiles. Encuentra utilidades para PDF, imágenes, diseño, IA, productividad y más.">
 
 <style>
+    /* ========== VARIABLES DE TEMA ========== */
     :root {
         --bg: #fafafa;
         --text: #222;
@@ -14,9 +17,9 @@
         --card-border: #e8e8e8;
         --button-bg: #222;
         --button-text: #fff;
+        --search-bg: #fff;
     }
 
-    /* 🌙 MODO OSCURO */
     [data-theme="dark"] {
         --bg: #121212;
         --text: #eaeaea;
@@ -24,6 +27,7 @@
         --card-border: #333;
         --button-bg: #eaeaea;
         --button-text: #000;
+        --search-bg: #1d1d1d;
     }
 
     body {
@@ -31,38 +35,67 @@
         font-family: system-ui, sans-serif;
         background: var(--bg);
         color: var(--text);
-        transition: background .2s, color .2s;
-    }
-
-    header {
-        padding: 20px;
-        text-align: center;
-        background: var(--card-bg);
-        border-bottom: 1px solid var(--card-border);
         transition: .2s;
     }
 
-    h1 { margin: 0; font-size: 1.8rem; }
-
-    /* 🔘 Selector de Tema */
-    .theme-selector {
-        margin-top: 10px;
+    /* ========== BARRA SUPERIOR ========== */
+    .topbar {
         display: flex;
-        justify-content: center;
-        gap: 10px;
-    }
-    .theme-selector select {
-        padding: 6px 10px;
-        border-radius: 6px;
-        border: 1px solid var(--card-border);
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 20px;
         background: var(--card-bg);
+        border-bottom: 1px solid var(--card-border);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+
+    /* BUSCADOR */
+    .search-area {
+        display: flex;
+        gap: 10px;
+        width: 70%;
+        max-width: 500px;
+    }
+
+    .search-area input {
+        flex: 1;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid var(--card-border);
+        background: var(--search-bg);
         color: var(--text);
     }
 
-    /* 🧱 Contenedor */
+    .search-area button {
+        padding: 10px 14px;
+        background: var(--button-bg);
+        color: var(--button-text);
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+    /* BOTÓN DE TEMA */
+    .theme-button {
+        width: 42px;
+        height: 42px;
+        border-radius: 8px;
+        background: var(--button-bg);
+        color: var(--button-text);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        border: none;
+        font-size: 20px;
+    }
+
+    /* ========== CONTENIDO ========== */
     .container {
         max-width: 900px;
-        margin: 40px auto;
+        margin: 30px auto;
         padding: 0 20px;
     }
 
@@ -75,146 +108,192 @@
         display: flex;
         gap: 20px;
         align-items: center;
-        transition: box-shadow .2s, background .2s, border .2s;
+        transition: .2s;
     }
 
     .tool:hover {
-        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
 
     .tool img {
-        width: 90px;
-        height: 90px;
+        width: 80px;
+        height: 80px;
         border-radius: 10px;
         object-fit: cover;
         background: #ccc;
     }
 
-    .info h2 { margin: 0; font-size: 1.2rem; }
-    .info p { margin: 5px 0 10px 0; opacity: .8; }
+    .info h2 {
+        margin: 0;
+        font-size: 1.2rem;
+    }
+
+    .info p {
+        margin: 5px 0 10px 0;
+        opacity: .8;
+    }
+
     .info a {
-        display: inline-block;
+        text-decoration: none;
         padding: 6px 12px;
-        border-radius: 6px;
         background: var(--button-bg);
         color: var(--button-text);
-        text-decoration: none;
-        font-size: .9rem;
+        border-radius: 6px;
     }
 
     @media (max-width: 600px) {
+        .topbar { flex-direction: column; gap: 10px; }
+        .search-area { width: 100%; }
         .tool { flex-direction: column; text-align: center; }
-        .tool img { width: 100%; height: 150px; }
     }
 </style>
-
 </head>
 <body>
 
-<header>
-    <h1>Stack de Herramientas</h1>
-    <p>Colección minimalista de sitios web útiles</p>
-
-    <!-- SELECTOR DE TEMA -->
-    <div class="theme-selector">
-        <select id="themeSelect">
-            <option value="system">Tema del sistema</option>
-            <option value="light">Modo claro</option>
-            <option value="dark">Modo oscuro</option>
-        </select>
-    </div>
-</header>
-
-<div class="container">
-
-    <!-- 🧰 TARJETAS DE HERRAMIENTAS -->
-    <div class="tool">
-        <img src="https://via.placeholder.com/150" alt="">
-        <div class="info">
-            <h2>TinyWow</h2>
-            <p>Herramientas gratis para PDF, imágenes, videos y archivos.</p>
-            <a href="https://tinywow.com" target="_blank">Visitar</a>
-        </div>
+<!-- ========== BARRA SUPERIOR ========== -->
+<div class="topbar">
+    <!-- BÚSQUEDA -->
+    <div class="search-area">
+        <input id="searchInput" type="text" placeholder="Buscar por nombre o tipo...">
+        <button onclick="applySearch()">OK</button>
     </div>
 
-    <div class="tool">
-        <img src="https://via.placeholder.com/150" alt="">
-        <div class="info">
-            <h2>10015.io</h2>
-            <p>Más de 100 herramientas para diseño, texto, código y multimedia.</p>
-            <a href="https://10015.io" target="_blank">Visitar</a>
-        </div>
-    </div>
-
-    <div class="tool">
-        <img src="https://via.placeholder.com/150" alt="">
-        <div class="info">
-            <h2>ILovePDF</h2>
-            <p>Convertir, unir, comprimir y editar archivos PDF.</p>
-            <a href="https://ilovepdf.com" target="_blank">Visitar</a>
-        </div>
-    </div>
-
-    <div class="tool">
-        <img src="https://via.placeholder.com/150" alt="">
-        <div class="info">
-            <h2>Remove.bg</h2>
-            <p>Elimina el fondo de imágenes en 1 clic.</p>
-            <a href="https://remove.bg" target="_blank">Visitar</a>
-        </div>
-    </div>
-
-    <div class="tool">
-        <img src="https://via.placeholder.com/150" alt="">
-        <div class="info">
-            <h2>Canva</h2>
-            <p>Editor de diseños fácil con plantillas profesionales.</p>
-            <a href="https://canva.com" target="_blank">Visitar</a>
-        </div>
-    </div>
-
-    <div class="tool">
-        <img src="https://via.placeholder.com/150" alt="">
-        <div class="info">
-            <h2>Photopea</h2>
-            <p>Editor de fotos similar a Photoshop, completamente online.</p>
-            <a href="https://photopea.com" target="_blank">Visitar</a>
-        </div>
-    </div>
-
+    <!-- BOTÓN DE TEMA -->
+    <button class="theme-button" id="themeButton">☀️</button>
 </div>
 
+<!-- ========== CONTENIDO ========== -->
+<div class="container" id="toolList"></div>
+
 <script>
-    const themeSelect = document.getElementById("themeSelect");
-
-    // Cargar tema guardado o sistema
-    const savedTheme = localStorage.getItem("theme") || "system";
-    themeSelect.value = savedTheme;
-
-    function applyTheme(theme) {
-        if (theme === "light") {
-            document.documentElement.setAttribute("data-theme", "light");
-        } else if (theme === "dark") {
-            document.documentElement.setAttribute("data-theme", "dark");
-        } else {
-            // Tema del sistema
-            const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-            document.documentElement.setAttribute("data-theme", systemDark ? "dark" : "light");
-        }
+/* ===========================================================
+   LISTA DE HERRAMIENTAS (EDITABLE)
+   Cada herramienta tiene: nombre, descripción, enlace, tipo
+=========================================================== */
+const tools = [
+    {
+        name: "TinyWow",
+        type: "PDF",
+        desc: "Herramientas gratis para PDF, imágenes y archivos.",
+        url: "https://tinywow.com",
+        img: "https://via.placeholder.com/150"
+    },
+    {
+        name: "10015.io",
+        type: "Multitool",
+        desc: "Más de 100 herramientas de diseño, texto y multimedia.",
+        url: "https://10015.io",
+        img: "https://via.placeholder.com/150"
+    },
+    {
+        name: "ILovePDF",
+        type: "PDF",
+        desc: "Convertir, unir, comprimir y editar archivos PDF.",
+        url: "https://ilovepdf.com",
+        img: "https://via.placeholder.com/150"
+    },
+    {
+        name: "Remove.bg",
+        type: "Imagen",
+        desc: "Elimina el fondo de imágenes automáticamente.",
+        url: "https://remove.bg",
+        img: "https://via.placeholder.com/150"
+    },
+    {
+        name: "Canva",
+        type: "Diseño",
+        desc: "Editor online de diseño fácil y con plantillas.",
+        url: "https://canva.com",
+        img: "https://via.placeholder.com/150"
+    },
+    {
+        name: "Photopea",
+        type: "Imagen",
+        desc: "Editor online similar a Photoshop.",
+        url: "https://photopea.com",
+        img: "https://via.placeholder.com/150"
     }
+];
 
-    applyTheme(savedTheme);
+/* ===========================================================
+   GENERAR HTML
+=========================================================== */
+const list = document.getElementById("toolList");
 
-    themeSelect.addEventListener("change", () => {
-        const selected = themeSelect.value;
-        localStorage.setItem("theme", selected);
-        applyTheme(selected);
+function renderTools(filter = "") {
+    list.innerHTML = "";
+
+    const f = filter.toLowerCase();
+
+    const filtered = tools.filter(t =>
+        t.name.toLowerCase().includes(f) ||
+        t.type.toLowerCase().includes(f)
+    );
+
+    filtered.forEach(t => {
+        list.innerHTML += `
+            <div class="tool">
+                <img src="${t.img}" alt="Vista previa ${t.name}">
+                <div class="info">
+                    <h2>${t.name}</h2>
+                    <p>${t.desc}</p>
+                    <small><b>Tipo:</b> ${t.type}</small><br><br>
+                    <a href="${t.url}" target="_blank">Visitar</a>
+                </div>
+            </div>
+        `;
     });
+}
 
-    // Cambia automáticamente si está en modo "system"
-    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
-        if (themeSelect.value === "system") applyTheme("system");
-    });
+renderTools();
+
+/* ===========================================================
+   BUSCADOR
+=========================================================== */
+function applySearch() {
+    const value = document.getElementById("searchInput").value;
+    renderTools(value);
+}
+
+/* ENTER para buscar */
+document.getElementById("searchInput").addEventListener("keydown", e => {
+    if (e.key === "Enter") applySearch();
+});
+
+/* ===========================================================
+   TEMA (CLARO / OSCURO / SISTEMA)
+=========================================================== */
+const themeButton = document.getElementById("themeButton");
+
+function setTheme(theme) {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+
+    themeButton.textContent = 
+        theme === "dark" ? "🌙" :
+        theme === "light" ? "☀️" : "🖥️";
+}
+
+let savedTheme = localStorage.getItem("theme") || "system";
+applySystemTheme();
+setTheme(savedTheme);
+
+themeButton.onclick = () => {
+    if (savedTheme === "light") savedTheme = "dark";
+    else if (savedTheme === "dark") savedTheme = "system";
+    else savedTheme = "light";
+
+    setTheme(savedTheme);
+    applySystemTheme();
+};
+
+function applySystemTheme() {
+    if (savedTheme === "system") {
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.setAttribute("data-theme", prefersDark ? "dark" : "light");
+    }
+}
+
 </script>
 
 </body>
